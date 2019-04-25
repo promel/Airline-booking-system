@@ -1,7 +1,5 @@
 #include "flight.h"
 
-using namespace std;
-
 int main()
 {
     Flight flights[NUMBER_OF_FLIGHT_TIMES]; 
@@ -13,6 +11,8 @@ int main()
         */
         string name,surname;
         cout << "Welcome to COS1511 Filght Booking System"<< endl;
+        cout << endl;
+        cout << "Enter full name"<< endl;
         cin >> name>>surname;
         cout << "The available travel times for flights are:" << endl;
         cout << "\tDepart \tArrive" << endl;
@@ -42,10 +42,23 @@ int main()
             flights[option].fullName = name + " " + surname;
 
             seatBooked = bookSeat(chosenSeat,flights[option]);
-            displaySeats(flights[option]);
 
         } while (!seatBooked);
         
+        displayTravelTicket(flights[option]);
+        char additionalBooking;
+        cout <<"Do you want to continue(Y/N)?"<<endl;
+        cin>>additionalBooking;
+        switch(additionalBooking){
+            case 'Y':
+            case 'y':
+                    break;
+            case 'N':
+            case 'n':
+                isDone = true;
+                break;
+        }
     } while (!isDone);
+    displayBookings(flights);
     return 0;
 }
